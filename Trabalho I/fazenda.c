@@ -162,7 +162,7 @@ Fazenda *getFazenda(Fazenda *fazendas, int id){
 
 void mostrarAnimalSexo(Fazenda *fazendas)
 {
-	//Animal *aux;
+
 	int id;
 	printf("\nInsira o ID da fazenda: "); 
 	scanf("%d", &id);
@@ -172,24 +172,12 @@ void mostrarAnimalSexo(Fazenda *fazendas)
     } else {
         printf("\nFazenda inexistente\n");
     }
-	// for(aux = rebanho ; aux != NULL ; aux = aux->prox)
-	// {
-	// 	if (aux->sexo == 'F')
-	// 	{
-	// 		countF++;
-	// 	}
-	// 	if (aux->sexo == 'M')
-	// 	{
-	// 		countM++;
-	// 	}	
-	// }
-
 
 }
 
 void mostrarAnimalStatus(Fazenda *fazendas)
 {
-	//Fazenda *aux;
+
 	int sts, id;
 	printf("\nInsira o ID da fazenda: \n"); 
 	scanf("%d", &id);
@@ -197,29 +185,7 @@ void mostrarAnimalStatus(Fazenda *fazendas)
 	printf("Informe o tipo de status do animal que queira listar: \n");
 	printf("1 - Nascimento no propria fazenda\n2 - Vendido\n3 - Troca\n");
 	scanf("%d", &sts);
-	// if (sts == 1)
-	// {
-	// 	printf("\nStatus: Nascimento na propria fazenda.\n");
-	// }
-	// if (sts == 2)
-	// {
-	// 	printf("\nStatus: Vendido.\n");
-	// }
-	// if (sts == 3)
-	// {
-	// 	printf("\nStatus: Troca.\n");
-	// }
-	// for(aux = fazendas->rebanho ; aux != NULL ; aux = fazendas->rebanho->prox)
-	// {
-	// 	if(aux->rebanho->status == sts)
-	// 	{
-	// 		printf("---------------------------------------\n");
-	// 		printf("Id da fazenda: %d\n", aux->id_fazenda);
-	// 		printf("Id do animal: %d\n", aux->rebanho->id_animal);
-	// 		printf("Sexo: %c\n", aux->rebanho->sexo);
-	// 		printf("Peso: %.2f\n", aux->rebanho->peso);
-	// 	}
-	// }
+	
 	if(fazenda){
 		MostrarStatus(fazenda, sts);
 	}else{
@@ -256,10 +222,19 @@ void valorTotal(Fazenda *fazendas){
 	}else{
 		printf("\nFazenda inexistente\n");
 	}
-	// do{
-	// 	soma += countArroba(fazenda) * 267.5;
-	// 	aux = aux->prox;
-	// }while(aux != fazendas);
+	
+}
 
-	// return soma;
+void liberarFazendas(Fazenda *fazendas){
+	Fazenda *aux = fazendas, *aux2;
+	aux2 = NULL;
+
+	while(fazendas->prox != aux){
+		aux2 = fazendas;
+		liberarAnimal(aux->rebanho);
+		fazendas = fazendas->prox;
+		free(aux2);
+	}
+
+	free(fazendas);
 }
