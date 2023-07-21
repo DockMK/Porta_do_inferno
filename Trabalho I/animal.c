@@ -313,7 +313,7 @@ void MostrarStatus(Fazenda *fazenda, int sts){
 	}
 }
 
-int contArroba(Fazenda *fazenda){
+float contArroba(Fazenda *fazenda){
 	float soma=0;
 	Animal *aux = fazenda->rebanho;
 	while(aux){
